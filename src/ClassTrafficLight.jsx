@@ -5,18 +5,17 @@ class ClassTrafficLight extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      lightColor: 0,
       currentLightIndex: 0,
     };
   }
 
   handleNextState = () => {
-    this.setState((prevState) => {
-      const currentLightIndex = arrColors.indexOf(prevState.lightColor);
-      return {
-        lightColor: arrColors[(currentLightIndex + 1) % arrColors.length],
-        currentLightIndex: (currentLightIndex + 1) % arrColors.length,
-      };
+    const newColorIndex =
+      this.state.currentLightIndex === 0
+        ? arrColors.length - 1
+        : this.state.currentLightIndex - 1;
+    this.setState({
+      currentLightIndex: newColorIndex,
     });
   };
   render() {
